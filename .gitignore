@@ -1,0 +1,24 @@
+# Dependencies
+node_modules/
+
+# Build output
+dist/
+
+# Generated audit reports
+*.pdf
+*.html
+*.csv
+
+# Test outputs
+test-reports/
+
+# Environment & secrets
+.env
+.env.*
+
+# OS
+.DS_Store
+
+# Logs
+*.log
+npm-debug.log*

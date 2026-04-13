@@ -1,0 +1,34 @@
+{
+  "name": "seo-auditor",
+  "version": "1.0.0",
+  "description": "Comprehensive SEO audit tool with Ollama AI recommendations and PDF report generation",
+  "main": "dist/index.js",
+  "bin": {
+    "seo-audit": "dist/index.js"
+  },
+  "scripts": {
+    "build": "tsc",
+    "start": "node dist/index.js",
+    "dev": "ts-node src/server.ts",
+    "cli": "ts-node src/index.ts",
+    "audit:example": "ts-node src/index.ts --url https://example.com --skip-ai"
+  },
+  "dependencies": {
+    "@types/express": "^5.0.6",
+    "axios": "^1.7.9",
+    "chalk": "^4.1.2",
+    "cheerio": "^1.0.0",
+    "cli-table3": "^0.6.5",
+    "commander": "^12.1.0",
+    "express": "^5.2.1",
+    "ollama": "^0.5.11",
+    "ora": "^5.4.1",
+    "p-limit": "^3.1.0",
+    "playwright": "^1.49.1"
+  },
+  "devDependencies": {
+    "@types/node": "^22.0.0",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.7.0"
+  }
+}
