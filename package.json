@@ -7,14 +7,11 @@
     "seo-audit": "dist/index.js"
   },
   "scripts": {
-    "build": "tsc && npx playwright install chromium --with-deps",
-    "start": "node dist/server.js",
+    "build": "tsc",
+    "start": "node dist/index.js",
     "dev": "ts-node src/server.ts",
     "cli": "ts-node src/index.ts",
     "audit:example": "ts-node src/index.ts --url https://example.com --skip-ai"
-  },
-  "engines": {
-    "node": ">=20"
   },
   "dependencies": {
     "@types/express": "^5.0.6",
