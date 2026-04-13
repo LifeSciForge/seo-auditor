@@ -12,7 +12,7 @@ import { exportToCSV } from './export/csv-exporter';
 import { exportToHTML } from './export/html-dashboard';
 
 const app = express();
-const PORT = 3000;
+const PORT = process.env.PORT ? parseInt(process.env.PORT, 10) : 3000;
 
 // ── Temp storage for reports ──────────────────────────────────────────────────
 const REPORTS_DIR = path.join(os.tmpdir(), 'seo-auditor-reports');
@@ -39,7 +39,9 @@ app.get('/', (_req: Request, res: Response) => {
 // ── SSE audit endpoint ────────────────────────────────────────────────────────
 app.get('/audit', async (req: Request, res: Response) => {
   const rawUrl  = String(req.query.url   || '').trim();
-  const skipAI  = req.query.skipAI === 'true';
+  // On cloud deployments without Ollama, force skipAI
+  const noOllama = !process.env.OLLAMA_HOST && process.env.SKIP_AI === 'true';
+  const skipAI  = req.query.skipAI === 'true' || noOllama;
   const model   = String(req.query.model || DEFAULT_OPTIONS.ollamaModel);
   const rawInd  = String(req.query.industry || 'generic');
   const industry: IndustryType = VALID_INDUSTRIES.includes(rawInd as IndustryType)
